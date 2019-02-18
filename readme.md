@@ -23,7 +23,7 @@ Click the login button
 
 This will trigger the OAuth2 workflow and upon successful authentication will return the user to the index.html page.
 
-In the background the app pulls the access token from the url hash and puts it into local storage.  Which is then used for all the future requests.
+In the background the app pulls the access token from the url hash and puts it into local storage.  Which is then used for all the future requests.  It also removes the hash tag from the url to clean up the address bar...this is purely cosmetic.
 
 ## Usage
 
