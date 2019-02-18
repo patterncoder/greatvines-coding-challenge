@@ -1,0 +1,22 @@
+{
+  "name": "greatvines-coding-challenge",
+  "version": "1.0.0",
+  "description": "Drop dead simple app that will use the GreatVines_Local app to access a Salesforce organization and view their contacts and add contacts.",
+  "main": "login.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patterncoder/greatvines-coding-challenge.git"
+  },
+  "author": "Chris Baily",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patterncoder/greatvines-coding-challenge/issues"
+  },
+  "homepage": "https://github.com/patterncoder/greatvines-coding-challenge#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
