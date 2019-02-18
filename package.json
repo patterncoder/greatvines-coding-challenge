@@ -4,7 +4,8 @@
   "description": "Drop dead simple app that will use the GreatVines_Local app to access a Salesforce organization and view their contacts and add contacts.",
   "main": "login.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/http-server -p 3000 ."
   },
   "repository": {
     "type": "git",

@@ -3,3 +3,17 @@
 .h1Title {
     color: red;
 }
+
+.entryForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-top: 50px;
+}
+
+.button {
+    color: #ffffff;
+    background-color: #9555af;
+    margin: 20px;
+    
+}
