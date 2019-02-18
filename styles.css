@@ -1,7 +1,13 @@
 
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 
 .h1Title {
-    color: red;
+    color: #9555af;
 }
 
 .entryForm {
@@ -15,5 +21,4 @@
     color: #ffffff;
     background-color: #9555af;
     margin: 20px;
-    
 }
