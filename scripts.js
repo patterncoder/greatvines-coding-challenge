@@ -96,6 +96,12 @@ function login () {
     }
 }
 
+function logout () {
+    localStorage.removeItem("token");
+    localStorage.removeItem("accountId");
+    window.location.href = "login.html";
+}
+
 
 login();
 getContacts();
