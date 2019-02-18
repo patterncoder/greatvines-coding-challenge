@@ -92,7 +92,7 @@ function login () {
         history.replaceState(null, null, ' ');
     } else {
         // send to login screen
-        // window.location.href = "login.html"
+        window.location.href = "login.html"
     }
 }
 
