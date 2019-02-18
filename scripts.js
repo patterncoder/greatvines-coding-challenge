@@ -1,5 +1,7 @@
 
 
+const baseUrl = "https://na85.salesforce.com/services/data/v20.0"
+
 function updateDiv (data) {
     
     let myDiv = document.getElementById("output");
@@ -12,32 +14,38 @@ function updateDiv (data) {
 }
 
 
-async function getData() {
-    await fetch(`https://na85.salesforce.com/services/data/v20.0/query/?q=SELECT+name,email,phone,accountid+from+Contact`, {
+async function getContacts() {
+    const url = `${baseUrl}/query/?q=SELECT+name,email,phone,accountid+from+Contact`;
+    const options = {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("token")}`
         }
-    })
+    }
+    await fetch(url, options)
     .then(response => response.json())
     .then(json => {
+        console.log("fetched the contacts");
         console.log(json);
         updateDiv(json.records);
     }).catch(error => console.error(error));
 }
 
-async function getAccount() {
-    await fetch(`https://na85.salesforce.com/services/data/v20.0/query/?q=SELECT+id+from+Account`, {
+function getAccount() {
+    
+    const url = `${baseUrl}/query/?q=SELECT+id+from+Account`;
+    const options = {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("token")}`
         }
-    })
+    }
+    fetch(url, options)
     .then(response => response.json())
     .then(json => {
         localStorage.setItem("accountId", json.records[0].Id);
         console.log("retrieved a default accountId");
-    }).catch(error => console.error(error));
+    }).catch(error => console.error("error fetching accounts", error));
 }
 
 
@@ -54,15 +62,15 @@ function addContact() {
 }
 
 function sendToSalesForce (firstname, lastname, phone, email) {
-    let data = JSON.stringify({
+    const data = JSON.stringify({
         FirstName: firstname,
         LastName: lastname,
         Email: email,
         Phone: phone,
         AccountId: localStorage.getItem("accountId")
     })
-    let url = "https://na85.salesforce.com/services/data/v20.0/sobjects/Contact/";
-    let options = {
+    const url = `${baseUrl}/sobjects/Contact/`;
+    const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -72,8 +80,8 @@ function sendToSalesForce (firstname, lastname, phone, email) {
     }
     fetch(url, options).then(response => {
         console.log(response);
-        getData();
-    });
+        getContacts();
+    }).catch(error => console.error("error sending new contact", error));;
 }
 
 function login () {
@@ -83,11 +91,12 @@ function login () {
         localStorage.setItem("token", decoded);
         history.replaceState(null, null, ' ');
     } else {
-        window.location.href = "login.html"
+        // send to login screen
+        // window.location.href = "login.html"
     }
 }
 
 
 login();
-getData();
+getContacts();
 getAccount();
